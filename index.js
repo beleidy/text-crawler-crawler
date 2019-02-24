@@ -46,7 +46,7 @@ const ES_HOST = `localhost:${ES_PORT}`;
         index: "sites",
         type: "_doc",
         body: {
-          domain: new URL(result.response.url).hostname,
+          domain: new URL(result.options.url).hostname,
           uri: result.response.url,
           siteText: result.result,
           lastUpdated: new Date(Date.now()).toISOString()
