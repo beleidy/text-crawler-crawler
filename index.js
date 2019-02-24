@@ -40,15 +40,15 @@ const ES_HOST = `localhost:${ES_PORT}`;
         return true;
       }
     },
-    onSuccess: response => {
-      console.log(response.response.url, `Status ${response.response.status}`);
+    onSuccess: result => {
+      console.log(result.response.url, `Status ${result.response.status}`);
       esClient.index({
         index: "sites",
         type: "_doc",
         body: {
-          domain: new URL(response.response.url).hostname,
-          uri: response.response.url,
-          siteText: response.result,
+          domain: new URL(result.response.url).hostname,
+          uri: result.response.url,
+          siteText: result.result,
           lastUpdated: new Date(Date.now()).toISOString()
         }
       });
