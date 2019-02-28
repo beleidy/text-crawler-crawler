@@ -3,10 +3,10 @@ const HCCrawler = require("headless-chrome-crawler");
 const RedisCache = require("headless-chrome-crawler/cache/redis");
 const uuidv4 = require("uuid/v4");
 
-const REDIS_HOST = "localhost";
-const REDIS_PORT = 6379;
-const ES_PORT = 9200;
-const ES_HOST = `localhost:${ES_PORT}`;
+const REDIS_HOST = process.env.REDIS_HOST || "localhost";
+const REDIS_PORT = parseInt(process.env.REDIS_PORT) || 6379;
+const ES_PORT = parseInt(process.env.ES_PORT) || 9200;
+const ES_HOST = `${process.env.ES_HOST || "localhost"}:${ES_PORT}`;
 
 (async function main() {
   const cache = new RedisCache({
